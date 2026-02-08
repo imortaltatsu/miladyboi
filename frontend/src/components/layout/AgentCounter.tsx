@@ -19,7 +19,7 @@ export default function AgentCounter() {
 
   return (
     <div className="fixed bottom-4 left-4 right-4 z-50">
-      <div className="wood-panel mx-auto max-w-xl">
+      <div className="wood-panel mx-auto max-w-2xl">
         <div className="px-6 py-3 flex items-center justify-between">
           {/* Live indicator */}
           <div className="flex items-center space-x-3">
@@ -45,6 +45,20 @@ export default function AgentCounter() {
               </div>
             </div>
           )}
+
+          {/* $DWOOD Token */}
+          <a
+            href="https://www.clanker.world/clanker/0xE804Af65994f66A1F9aCB22ffe4e8C00b68E4b07"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center space-x-2 px-3 py-1 bg-gold/10 rounded-lg hover:bg-gold/20 transition-colors"
+          >
+            <span className="text-lg">💰</span>
+            <div className="text-center">
+              <div className="font-western text-gold text-sm">$DWOOD</div>
+              <div className="text-xs text-parchment/50">Base</div>
+            </div>
+          </a>
 
           {/* Agent count */}
           <div className="flex items-center space-x-3">

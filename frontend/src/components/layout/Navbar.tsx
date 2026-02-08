@@ -48,6 +48,17 @@ export default function Navbar() {
                 <span>{link.label}</span>
               </Link>
             ))}
+
+            {/* $DWOOD Token Link */}
+            <a
+              href="https://www.clanker.world/clanker/0xE804Af65994f66A1F9aCB22ffe4e8C00b68E4b07"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="western-btn text-sm flex items-center space-x-2 bg-gold/10 border-gold/40 hover:bg-gold/20"
+            >
+              <span>💰</span>
+              <span>$DWOOD</span>
+            </a>
           </div>
         </div>
       </div>

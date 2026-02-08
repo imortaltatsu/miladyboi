@@ -12,6 +12,7 @@ import graveyardRouter from './graveyard.js';
 import leaderboardRouter from './leaderboard.js';
 import historyRouter from './history.js';
 import prRouter from './pr.js';
+import adminRouter from './admin.js';
 
 const router = Router();
 
@@ -40,5 +41,8 @@ router.use('/api/history', historyRouter);
 
 // x402 PR Submission API
 router.use('/api/pr', prRouter);
+
+// Admin API (secret-protected)
+router.use('/api/admin', adminRouter);
 
 export default router;
