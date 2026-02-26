@@ -1,48 +1,41 @@
-import express from 'express';
-import cors from 'cors';
-import helmet from 'helmet';
-import morgan from 'morgan';
-import 'dotenv/config';
+import express from 'express'
+import helmet from 'helmet'
+import morgan from 'morgan'
+import { corsMiddleware } from './middleware/cors.js'
+import { errorHandler } from './middleware/error-handler.js'
+import { healthRouter } from './routes/health.js'
+import { generateRouter } from './routes/generate.js'
+import { historyRouter } from './routes/history.js'
 
-import routes from './routes/index.js';
-import { errorHandler } from './middleware/error-handler.js';
+export function createApp() {
+  const app = express()
 
-const app = express();
+  // Security & logging
+  app.use(helmet())
+  app.use(morgan('dev'))
 
-// CORS - allow all origins (agents come from anywhere)
-app.use(cors());
+  // CORS
+  app.use(corsMiddleware)
 
-// Helmet with relaxed settings
-app.use(
-  helmet({
-    contentSecurityPolicy: false,
-    crossOriginEmbedderPolicy: false,
+  // Body parsing
+  app.use(express.json())
+  app.use(express.urlencoded({ extended: true }))
+
+  // Routes
+  app.use(healthRouter)
+  app.use(generateRouter)
+  app.use(historyRouter)
+
+  // 404 handler
+  app.use((req, res) => {
+    res.status(404).json({
+      success: false,
+      error: 'Not found'
+    })
   })
-);
 
-// JSON body parser (1mb limit)
-app.use(express.json({ limit: '1mb' }));
+  // Error handler (must be last)
+  app.use(errorHandler)
 
-// Request logging
-if (process.env.NODE_ENV !== 'test') {
-  app.use(morgan('dev'));
+  return app
 }
-
-// Mount routes
-app.use(routes);
-
-// 404 handler
-app.use((_req, res) => {
-  res.status(404).json({
-    ok: false,
-    error: {
-      code: 'NOT_FOUND',
-      message: 'Endpoint not found',
-    },
-  });
-});
-
-// Global error handler
-app.use(errorHandler);
-
-export default app;

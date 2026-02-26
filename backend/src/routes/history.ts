@@ -1,37 +1,34 @@
-import { Router } from 'express';
-import type { RoomId } from '../shared/index.js';
-import { store } from '../store/index.js';
-import { success } from '../lib/response.js';
+import { Router } from 'express'
+import { storage } from '../services/storage.js'
+import { success, error } from '../lib/response.js'
 
-const router = Router();
+export const historyRouter = Router()
 
-router.get('/', (req, res) => {
-  const room = req.query.room as RoomId | undefined;
-  const limit = parseInt(req.query.limit as string) || 50;
+// Get user's generation history
+historyRouter.get('/api/history/:address', (req, res) => {
+  const { address } = req.params
 
-  let events;
-
-  if (room) {
-    events = store.getEventsByRoom(room, Math.min(limit, 100));
-  } else {
-    events = store.getAllEvents(Math.min(limit, 100));
+  if (!address || !/^0x[a-fA-F0-9]{40}$/.test(address)) {
+    error(res, 'Invalid address')
+    return
   }
 
-  success(res, {
-    data: {
-      room: room || 'all',
-      events: events.map((e) => ({
-        id: e.id,
-        type: e.type,
-        tick: e.tick,
-        room: e.room,
-        actor: e.actor,
-        action: e.action,
-        narrative: e.narrative,
-        timestamp: e.timestamp,
-      })),
-    },
-  });
-});
+  const history = storage.getUserHistory(address)
 
-export default router;
+  success(res, {
+    address,
+    generations: history,
+    count: history.length
+  })
+})
+
+// Get public gallery (all generations)
+historyRouter.get('/api/gallery', (req, res) => {
+  const limit = parseInt(req.query.limit as string) || 50
+  const gallery = storage.getAllGenerations(limit)
+
+  success(res, {
+    generations: gallery,
+    count: gallery.length
+  })
+})

@@ -1,67 +1,25 @@
-import type { Response } from 'express';
-import type { DayPhase } from '../shared/index.js';
-import { store } from '../store/index.js';
-import { getInGameTime } from '../engine/time.js';
+import { Response } from 'express'
+import type { ApiResponse } from 'shared'
 
-interface SuccessOptions<T> {
-  data: T;
-  status?: number;
+export function success<T>(res: Response, data: T, status = 200): Response {
+  return res.status(status).json({
+    success: true,
+    data
+  } as ApiResponse<T>)
 }
 
-interface ErrorOptions {
-  code: string;
-  message: string;
-  status?: number;
+export function error(res: Response, message: string, status = 400, details?: unknown): Response {
+  return res.status(status).json({
+    success: false,
+    error: message,
+    details
+  } as ApiResponse)
 }
 
-/**
- * Send a success response with standard envelope
- */
-export function success<T>(res: Response, options: SuccessOptions<T>): void {
-  const tick = store.getTick();
-  const { formatted, dayPhase } = getInGameTime(tick);
-
-  res.status(options.status || 200).json({
-    ok: true,
-    data: options.data,
-    meta: {
-      tick,
-      inGameTime: formatted,
-      dayPhase,
-      timestamp: Date.now(),
-    },
-  });
-}
-
-/**
- * Send an error response with standard envelope
- */
-export function error(res: Response, options: ErrorOptions): void {
-  res.status(options.status || 400).json({
-    ok: false,
-    error: {
-      code: options.code,
-      message: options.message,
-    },
-  });
-}
-
-/**
- * Get current meta for responses
- */
-export function getMeta(): {
-  tick: number;
-  inGameTime: string;
-  dayPhase: DayPhase;
-  timestamp: number;
-} {
-  const tick = store.getTick();
-  const { formatted, dayPhase } = getInGameTime(tick);
-
-  return {
-    tick,
-    inGameTime: formatted,
-    dayPhase,
-    timestamp: Date.now(),
-  };
+export function paymentRequired(res: Response, details: unknown): Response {
+  return res.status(402).json({
+    success: false,
+    error: 'Payment Required',
+    details
+  } as ApiResponse)
 }

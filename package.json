@@ -1,11 +1,11 @@
 {
-  "name": "deadwood",
+  "name": "panelforge",
   "version": "1.0.0",
   "private": true,
-  "description": "An autonomous AI agent Wild West world",
+  "description": "AI manga panel generator with Web3 micropayments",
   "scripts": {
     "dev": "concurrently -n be,fe -c blue,green \"pnpm --filter backend dev\" \"pnpm --filter frontend dev\"",
-    "build": "pnpm --filter @deadwood/shared build && pnpm --filter backend build && pnpm --filter frontend build",
+    "build": "pnpm --filter shared build && pnpm --filter backend build && pnpm --filter frontend build",
     "test": "pnpm -r test",
     "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",

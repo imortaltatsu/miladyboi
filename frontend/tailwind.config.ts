@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss';
+import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: [
@@ -9,57 +9,45 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        wood: {
-          dark: '#2a1810',
-          medium: '#4a2c1a',
-          light: '#6b4423',
-          highlight: '#8b5a2b',
+        manga: {
+          purple: '#9C27B0',
+          pink: '#E91E63',
+          cyan: '#00BCD4',
+          blue: '#3B82F6',
         },
-        gold: {
-          dark: '#8b6914',
-          DEFAULT: '#d4a017',
-          light: '#f4c430',
+        neon: {
+          pink: '#FF006E',
+          orange: '#FF6B00',
+          green: '#00FF88',
         },
-        parchment: {
-          DEFAULT: '#e8d5b7',
-          dark: '#c4a77d',
-        },
-        blood: '#8b0000',
-        rust: '#b7410e',
       },
       fontFamily: {
-        western: ['Rye', 'serif'],
-        pirata: ['Pirata One', 'cursive'],
-        cinzel: ['Cinzel Decorative', 'serif'],
-        fell: ['IM Fell English', 'serif'],
+        display: ['Bangers', 'cursive'],
+        body: ['Inter', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-manga': 'linear-gradient(135deg, #9C27B0 0%, #E91E63 100%)',
+        'gradient-web3': 'linear-gradient(135deg, #00BCD4 0%, #3B82F6 100%)',
       },
       animation: {
-        'fade-in': 'fadeIn 0.3s ease-in-out',
-        'slide-in': 'slideIn 0.4s ease-out',
-        'pulse-slow': 'pulse 3s infinite',
-        'flicker': 'flicker 4s infinite',
+        'float': 'float 3s ease-in-out infinite',
+        'glow': 'glow 2s ease-in-out infinite',
       },
       keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0', transform: 'translateY(-10px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-20px)' },
         },
-        slideIn: {
-          '0%': { opacity: '0', transform: 'translateX(-20px)' },
-          '100%': { opacity: '1', transform: 'translateX(0)' },
-        },
-        flicker: {
+        glow: {
           '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0.8' },
+          '50%': { opacity: '0.5' },
         },
-      },
-      boxShadow: {
-        'wood': 'inset 0 2px 4px rgba(255,255,255,0.1), inset 0 -2px 4px rgba(0,0,0,0.3), 0 8px 16px rgba(0,0,0,0.5)',
-        'gold': '0 0 10px #d4a017, 0 0 20px rgba(212, 160, 23, 0.3)',
       },
     },
   },
   plugins: [],
-};
+}
 
-export default config;
+export default config
