@@ -13,7 +13,7 @@ export function AnimatedCollage() {
   if (!mounted) return null
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
       {/* Animated gradient background */}
       <div className="absolute inset-0 hero-gradient-bg opacity-30 animate-pulse" style={{ animationDuration: '10s' }} />
 
