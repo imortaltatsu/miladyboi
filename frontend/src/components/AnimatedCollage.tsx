@@ -17,108 +17,80 @@ export function AnimatedCollage() {
       {/* Animated gradient background */}
       <div className="absolute inset-0 hero-gradient-bg opacity-30 animate-pulse" style={{ animationDuration: '10s' }} />
 
-      {/* === TOP-LEFT corner piece === */}
-      <div
-        className="absolute -top-8 -left-8 w-[280px] h-[280px] animate-drift"
-        style={{ opacity: 0.12 }}
-      >
-        <div className="relative w-full h-full rounded-2xl overflow-hidden"
-          style={{
-            maskImage: 'radial-gradient(ellipse at top left, black 30%, transparent 75%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at top left, black 30%, transparent 75%)',
-          }}
-        >
-          <Image src="/anime-1.png" alt="" fill className="object-cover" />
-        </div>
+      {/* Top-left: Floating character */}
+      <div className="absolute -top-10 -left-10 w-80 h-80 opacity-15 animate-drift">
+        <Image
+          src="/anime-1.png"
+          alt=""
+          fill
+          className="object-contain rotate-12"
+        />
       </div>
 
-      {/* === TOP-RIGHT large feature === */}
-      <div
-        className="absolute -top-4 -right-4 w-[420px] h-[420px] animate-drift-alt"
-        style={{ opacity: 0.14 }}
-      >
-        <div className="relative w-full h-full rounded-3xl overflow-hidden"
-          style={{
-            maskImage: 'radial-gradient(ellipse at top right, black 25%, transparent 70%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at top right, black 25%, transparent 70%)',
-          }}
-        >
-          <Image src="/anime-hero.png" alt="" fill className="object-cover" />
-        </div>
+      {/* Top-right: Hero characters */}
+      <div className="absolute -top-20 right-0 w-96 h-96 opacity-20 animate-drift-alt">
+        <Image
+          src="/anime-hero.png"
+          alt=""
+          fill
+          className="object-contain -rotate-6"
+        />
       </div>
 
-      {/* === RIGHT-CENTER === */}
-      <div
-        className="absolute top-[45%] -right-12 w-[320px] h-[320px] animate-float-slow"
-        style={{ opacity: 0.1 }}
-      >
-        <div className="relative w-full h-full rounded-2xl overflow-hidden"
-          style={{
-            maskImage: 'radial-gradient(ellipse at center right, black 20%, transparent 70%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at center right, black 20%, transparent 70%)',
-          }}
-        >
-          <Image src="/characters-1.png" alt="" fill className="object-cover" />
-        </div>
+      {/* Middle-left: Anime group */}
+      <div className="absolute top-1/3 -left-20 w-72 h-72 opacity-10 animate-float-slow">
+        <Image
+          src="/anime-2.png"
+          alt=""
+          fill
+          className="object-contain"
+        />
       </div>
 
-      {/* === BOTTOM-RIGHT corner === */}
-      <div
-        className="absolute -bottom-8 -right-8 w-[360px] h-[360px] animate-drift"
-        style={{ opacity: 0.13 }}
-      >
-        <div className="relative w-full h-full rounded-3xl overflow-hidden"
-          style={{
-            maskImage: 'radial-gradient(ellipse at bottom right, black 25%, transparent 70%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at bottom right, black 25%, transparent 70%)',
-          }}
-        >
-          <Image src="/anime-4.png" alt="" fill className="object-cover" />
-        </div>
+      {/* Middle-right: Characters */}
+      <div className="absolute top-1/2 -right-20 w-80 h-80 opacity-15 animate-float-slower">
+        <Image
+          src="/characters-1.png"
+          alt=""
+          fill
+          className="object-contain rotate-6"
+        />
       </div>
 
-      {/* === BOTTOM-LEFT corner === */}
-      <div
-        className="absolute -bottom-6 -left-6 w-[260px] h-[260px] animate-drift-alt"
-        style={{ opacity: 0.1 }}
-      >
-        <div className="relative w-full h-full rounded-2xl overflow-hidden"
-          style={{
-            maskImage: 'radial-gradient(ellipse at bottom left, black 25%, transparent 70%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at bottom left, black 25%, transparent 70%)',
-          }}
-        >
-          <Image src="/anime-3.png" alt="" fill className="object-cover" />
-        </div>
+      {/* Bottom-left: Anime character */}
+      <div className="absolute bottom-10 left-10 w-64 h-64 opacity-12 animate-drift">
+        <Image
+          src="/anime-3.png"
+          alt=""
+          fill
+          className="object-contain -rotate-12"
+        />
       </div>
 
-      {/* === LEFT-CENTER subtle === */}
-      <div
-        className="absolute top-[35%] -left-16 w-[240px] h-[240px] animate-float-slower"
-        style={{ opacity: 0.08 }}
-      >
-        <div className="relative w-full h-full rounded-2xl overflow-hidden"
-          style={{
-            maskImage: 'radial-gradient(ellipse at center left, black 20%, transparent 65%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at center left, black 20%, transparent 65%)',
-          }}
-        >
-          <Image src="/anime-2.png" alt="" fill className="object-cover" />
-        </div>
+      {/* Bottom-right: Group shot */}
+      <div className="absolute -bottom-10 -right-10 w-96 h-96 opacity-18 animate-drift-alt">
+        <Image
+          src="/anime-4.png"
+          alt=""
+          fill
+          className="object-contain rotate-3"
+        />
       </div>
 
-      {/* Ambient light orbs - subtle glow effects */}
-      <div className="absolute top-[15%] right-[30%] w-40 h-40 bg-waifu-pink/8 rounded-full blur-[80px] animate-pulse-slow" />
-      <div className="absolute bottom-[20%] left-[20%] w-48 h-48 bg-waifu-coral/6 rounded-full blur-[80px] animate-pulse-slow" style={{ animationDelay: '2s' }} />
-      <div className="absolute top-[55%] right-[20%] w-36 h-36 bg-waifu-purple/6 rounded-full blur-[80px] animate-pulse-slow" style={{ animationDelay: '1s' }} />
+      {/* Center floating element */}
+      <div className="absolute top-1/4 left-1/3 w-56 h-56 opacity-8 animate-float">
+        <Image
+          src="/characters-2.png"
+          alt=""
+          fill
+          className="object-contain"
+        />
+      </div>
 
-      {/* Center-area darkening overlay - keeps the text area clean */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: 'radial-gradient(ellipse 60% 50% at 35% 50%, rgba(10,10,10,0.85) 0%, transparent 100%)',
-        }}
-      />
+      {/* Pink orbs */}
+      <div className="absolute top-40 right-1/3 w-32 h-32 bg-waifu-pink/10 rounded-full blur-3xl animate-pulse-slow" />
+      <div className="absolute bottom-40 left-1/4 w-40 h-40 bg-waifu-coral/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-1/2 right-1/4 w-36 h-36 bg-waifu-purple/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }} />
     </div>
   )
 }
