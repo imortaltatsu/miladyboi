@@ -1,73 +1,138 @@
+'use client'
+
 import Link from 'next/link'
+import { MangaCanvas3D } from '@/components/landing/MangaCanvas3D'
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Animated background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-manga-purple/20 via-black to-manga-pink/20" />
+      {/* Background with mesh gradient */}
+      <div className="absolute inset-0 mesh-gradient" />
       
-      {/* Hero */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
-        <div className="text-center space-y-8 max-w-4xl">
-          <h1 className="text-7xl md:text-9xl font-bold gradient-text animate-float">
-            PanelForge
+      {/* Leather texture overlay */}
+      <div className="absolute inset-0 leather opacity-10 pointer-events-none" />
+      
+      {/* Hero Section */}
+      <div className="relative z-10 container mx-auto px-6 pt-20">
+        {/* Logo/Title with embossed effect */}
+        <div className="text-center mb-12">
+          <h1 className="text-8xl md:text-[12rem] font-display text-embossed tracking-wider mb-4 leading-none">
+            PANELFORGE
           </h1>
-          
-          <p className="text-2xl md:text-3xl text-gray-300">
-            Transform Your Stories into <span className="gradient-text font-bold">Manga Panels</span>
-          </p>
-          
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            AI-powered manga generation with Web3 micropayments. 
-            Connect your wallet, pay with tokens, and bring your stories to life.
-          </p>
-          
-          <div className="flex gap-4 justify-center pt-8">
-            <Link
-              href="/app"
-              className="px-8 py-4 bg-gradient-manga text-white font-bold text-lg rounded-lg hover:scale-105 transition-transform neon-glow"
-            >
-              Launch App →
-            </Link>
-            
-            <Link
-              href="/gallery"
-              className="px-8 py-4 glass text-white font-bold text-lg rounded-lg hover:scale-105 transition-transform"
-            >
-              View Gallery
-            </Link>
-          </div>
+          <div className="h-2 w-64 mx-auto metallic rounded-full" />
         </div>
-        
-        {/* Features grid */}
-        <div className="grid md:grid-cols-3 gap-6 mt-24 max-w-5xl w-full">
-          <FeatureCard 
+
+        {/* 3D Interactive Manga Panels */}
+        <div className="mb-16">
+          <MangaCanvas3D />
+        </div>
+
+        {/* Tagline */}
+        <div className="text-center mb-16">
+          <p className="text-3xl md:text-4xl font-serif italic text-white/90 mb-4">
+            Transform Stories into Living Art
+          </p>
+          <p className="text-xl text-white/70 max-w-2xl mx-auto font-body">
+            AI-powered manga panel generation meets Web3. 
+            Craft your narrative, pay with tokens, and witness your story materialize 
+            in stunning manga form.
+          </p>
+        </div>
+
+        {/* CTA Buttons */}
+        <div className="flex gap-6 justify-center mb-24 flex-wrap">
+          <Link
+            href="/app"
+            className="px-10 py-5 btn-embossed text-white font-bold text-xl tracking-wide glossy relative"
+          >
+            Launch Forge
+          </Link>
+          
+          <Link
+            href="/gallery"
+            className="px-10 py-5 btn-crystal text-white font-bold text-xl tracking-wide"
+          >
+            View Gallery
+          </Link>
+        </div>
+
+        {/* Feature Cards with skeuomorphic design */}
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-24">
+          <FeatureCard
             icon="🎨"
-            title="AI-Powered"
-            description="Advanced AI transforms your text into vivid manga narratives"
+            title="AI Artistry"
+            description="Advanced neural networks transform your narrative into vivid manga-style descriptions. Every panel tells your story with dramatic flair."
+            accent="manga-purple"
           />
-          <FeatureCard 
+          <FeatureCard
             icon="💎"
             title="Web3 Native"
-            description="Pay seamlessly with custom ERC20 tokens"
+            description="Seamless crypto payments via custom ERC20 tokens. Your wallet is your passport to unlimited creative power."
+            accent="manga-cyan"
           />
-          <FeatureCard 
+          <FeatureCard
             icon="⚡"
-            title="Instant"
-            description="Generate panels in seconds, no waiting"
+            title="Instant Creation"
+            description="No waiting, no queues. Connect, pay, and generate. Your manga panels materialize in seconds."
+            accent="manga-pink"
           />
         </div>
+
+        {/* Tech Stack Showcase */}
+        <div className="glass-skeuo p-12 max-w-5xl mx-auto mb-24">
+          <h2 className="text-4xl font-display text-center mb-8 text-embossed">
+            FORGED WITH PRECISION
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <TechBadge label="Next.js" />
+            <TechBadge label="Three.js" />
+            <TechBadge label="Anthropic AI" />
+            <TechBadge label="Base Network" />
+          </div>
+        </div>
+
+        {/* Footer */}
+        <footer className="text-center py-12 text-white/50 font-body">
+          <p>© 2026 PanelForge. Crafted with passion and precision.</p>
+        </footer>
       </div>
     </div>
   )
 }
 
-function FeatureCard({ icon, title, description }: { icon: string; title: string; description: string }) {
+function FeatureCard({ 
+  icon, 
+  title, 
+  description, 
+  accent 
+}: { 
+  icon: string
+  title: string
+  description: string
+  accent: string
+}) {
   return (
-    <div className="glass p-6 rounded-xl hover:bg-white/10 transition-colors">
-      <div className="text-4xl mb-4">{icon}</div>
-      <h3 className="text-xl font-bold mb-2 gradient-text">{title}</h3>
-      <p className="text-gray-400">{description}</p>
+    <div className="glass-skeuo p-8 hover:scale-105 transition-transform duration-300 depth-shadow">
+      <div className="paper rounded-2xl p-6 mb-6 flex items-center justify-center">
+        <span className="text-6xl">{icon}</span>
+      </div>
+      <h3 className="text-2xl font-display mb-4 tracking-wide text-white">
+        {title}
+      </h3>
+      <p className="text-white/80 font-body leading-relaxed">
+        {description}
+      </p>
+      <div className={`h-1 w-20 bg-gradient-manga rounded-full mt-6`} />
+    </div>
+  )
+}
+
+function TechBadge({ label }: { label: string }) {
+  return (
+    <div className="leather px-6 py-4 rounded-xl text-center border-2 border-white/10 depth-shadow">
+      <span className="text-lg font-bold text-white/90 tracking-wide">
+        {label}
+      </span>
     </div>
   )
 }
