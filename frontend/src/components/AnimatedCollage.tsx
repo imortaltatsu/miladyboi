@@ -13,9 +13,19 @@ export function AnimatedCollage() {
   if (!mounted) return null
 
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
       {/* Animated gradient background */}
       <div className="absolute inset-0 hero-gradient-bg opacity-30 animate-pulse" style={{ animationDuration: '10s' }} />
+
+      {/* === LARGE BLURRED CENTER IMAGE === */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] opacity-10">
+        <Image
+          src="/anime-hero.png"
+          alt=""
+          fill
+          className="object-cover blur-2xl scale-125"
+        />
+      </div>
 
       {/* Top-left: Floating character */}
       <div className="absolute -top-10 -left-10 w-80 h-80 opacity-15 animate-drift">
