@@ -6,8 +6,8 @@ import { Providers } from './providers'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'PanelForge - AI Manga Generator',
-  description: 'Transform stories into manga panels with Web3 payments',
+  title: 'Milady Waifu - AI Manga Generator',
+  description: 'AI-powered manga panel generation with Web3 payments. Transform your ideas into anime art.',
 }
 
 export default function RootLayout({
@@ -18,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   )

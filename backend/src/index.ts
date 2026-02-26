@@ -6,6 +6,7 @@ import { errorHandler } from './middleware/error-handler.js'
 import { healthRouter } from './routes/health.js'
 import { generateRouter } from './routes/generate.js'
 import { historyRouter } from './routes/history.js'
+import authRouter from './routes/auth.js'
 
 export function createApp() {
   const app = express()
@@ -23,6 +24,7 @@ export function createApp() {
 
   // Routes
   app.use(healthRouter)
+  app.use('/api/auth', authRouter)
   app.use(generateRouter)
   app.use(historyRouter)
 

@@ -29,7 +29,7 @@ export default function GalleryPage() {
         </div>
 
         {loading ? (
-          <p className="text-center text-gray-400">Loading gallery...</p>
+          <p className="text-center text-gray-200">Loading gallery...</p>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {gallery.map((item) => (
@@ -37,7 +37,7 @@ export default function GalleryPage() {
                 <div className="bg-white/5 p-4 rounded-lg border-2 border-manga-purple/50 mb-4">
                   <p className="text-sm leading-relaxed">{item.panelText}</p>
                 </div>
-                <p className="text-xs text-gray-500">By {item.userAddress.slice(0, 6)}...{item.userAddress.slice(-4)}</p>
+                <p className="text-xs text-gray-300">By {item.userAddress.slice(0, 6)}...{item.userAddress.slice(-4)}</p>
               </div>
             ))}
           </div>

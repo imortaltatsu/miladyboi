@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Instructions for Claude Code when working with PanelForge.
+Instructions for Claude Code when working with Milady Waifu.
 
 ## Communication
 
@@ -8,7 +8,9 @@ Instructions for Claude Code when working with PanelForge.
 
 ## Project Overview
 
-**PanelForge** - AI manga panel generator with Web3 micropayments. Users connect wallet, pay with custom ERC20 token, input story prompts → receive generated manga panels.
+**Milady Waifu** - AI manga panel generator with Web3 micropayments. Users connect wallet, pay with $WAIFU tokens, input story prompts → receive generated manga panels.
+
+**Vibe**: Fun, degen, anime-inspired aesthetic. Think anime streaming site meets Web3. Pink/coral gradients, playful copy, high-energy design.
 
 **Core principle**: Clean separation of concerns. Frontend handles UI + Web3 interactions. Backend handles payment verification + AI generation. x402 middleware enforces crypto-only payments.
 
@@ -167,32 +169,33 @@ RPC_URL=https://mainnet.base.org
 
 ## Design System
 
-### Colors (Tailwind config)
+### Brand Colors (Waifu Theme)
 ```js
-colors: {
-  manga: {
-    purple: '#9C27B0',
-    pink: '#E91E63',
-    cyan: '#00BCD4',
-    blue: '#3B82F6',
-  },
-  neon: {
-    pink: '#FF006E',
-    orange: '#FF6B00',
-    green: '#00FF88',
-  }
+waifu: {
+  red: '#FF1744',        // Primary CTA
+  'red-dark': '#D50000', // Hover states
+  pink: '#FF4081',       // Accents
+  coral: '#FF6E88',      // Secondary accents
+  purple: '#B968C7',     // Tertiary
+  lavender: '#E1BEE7',   // Soft highlights
 }
 ```
 
+### Gradients
+- **Waifu Gradient**: `linear-gradient(135deg, #FF4081 0%, #FF6E88 50%, #B968C7 100%)`
+- **Hero BG**: Animated pink/coral gradient with opacity
+- **Buttons**: `from-waifu-red to-waifu-pink`
+
 ### Typography
-- **Display**: Bold, manga-inspired (Bangers, Komika)
-- **Body**: Inter, DM Sans
-- **Mono**: JetBrains Mono
+- **Display**: Black weight, large sizes (text-6xl to text-9xl)
+- **Body**: Inter
+- **Copy**: Fun, degen-friendly. Use casual language, emojis strategically
 
 ### Components
-- **Glassmorphic Cards**: `backdrop-blur-xl bg-white/5 border border-white/10`
-- **Gradient Buttons**: `bg-gradient-to-r from-manga-purple to-manga-pink`
-- **Manga Panels**: Comic-style borders with drop shadows
+- **Glassmorphic Cards**: `backdrop-blur-xl bg-white/5 border border-white/10` (`.glass`)
+- **Waifu Gradient Text**: `.waifu-gradient` class
+- **Shadow Effects**: `shadow-waifu` for pink glow
+- **Rounded Corners**: Prefer `rounded-2xl` or `rounded-3xl` over smaller radii
 
 ## Key Gotchas
 
