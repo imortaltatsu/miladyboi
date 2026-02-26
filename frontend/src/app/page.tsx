@@ -1,11 +1,8 @@
 import Link from 'next/link'
-import { AnimatedCollage } from '@/components/AnimatedCollage'
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-waifu-bg overflow-hidden relative">
-      {/* Animated collage background */}
-      <AnimatedCollage />
 
       {/* Header */}
       <header className="relative border-b border-white/10 backdrop-blur-md bg-black/20">
