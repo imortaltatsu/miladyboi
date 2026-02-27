@@ -175,10 +175,17 @@
 
         <!-- Results Section (Hidden by default) -->
         <div id="resultContainer" class="hidden glass rounded-3xl p-6 sm:p-8 space-y-6">
-            <div class="flex items-center justify-between">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <h3 class="text-2xl font-black waifu-gradient">Your Manga</h3>
                 <button type="button" id="resetBtn"
-                    class="text-sm text-gray-400 hover:text-white transition-colors">Generate Another</button>
+                    class="text-sm text-gray-400 hover:text-white transition-colors bg-white/5 px-4 py-2 rounded-lg border border-white/10">Generate
+                    Another</button>
+            </div>
+
+            <!-- Enhanced Story (Hidden by default) -->
+            <div id="enhancedStoryContainer" class="hidden bg-black/40 border-l-4 border-[#FF4081] p-4 rounded-r-xl">
+                <p class="text-xs text-[#FF4081] font-bold uppercase tracking-wider mb-1">Enhanced Story Prompt</p>
+                <p id="enhancedStoryText" class="text-gray-200 text-sm sm:text-base italic"></p>
             </div>
 
             <!-- Where images will be injected -->
@@ -228,6 +235,9 @@
                 resultContainer.classList.add('hidden');
                 formContainer.classList.remove('hidden');
                 imagesWrapper.innerHTML = '';
+                // Reset grid classes just in case
+                imagesWrapper.className = 'grid gap-2 sm:gap-4 w-full justify-center auto-rows-fr';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
             // Handle submission
@@ -309,6 +319,9 @@
                         // Response is JSON containing multiple pages or other structure
                         const data = await response.json();
 
+                        // We received data.enhanced_story but the user did not want it visible
+                        // so we omit displaying it.
+
                         if (data.pages && Array.isArray(data.pages)) {
                             data.pages.forEach((pageDataUri, idx) => {
                                 appendImageToResults(pageDataUri, `Page ${idx + 1}`);
@@ -344,24 +357,20 @@
 
             function appendImageToResults(src, labelText, isObjectUrl = false) {
                 const wrapper = document.createElement('div');
-                wrapper.className = 'relative rounded-2xl overflow-hidden border-2 border-[#FF4081]/30 bg-black/50';
-
-                const badge = document.createElement('div');
-                badge.className = 'absolute top-4 left-4 px-3 py-1 bg-black/70 backdrop-blur-md rounded-lg text-xs font-bold text-[#FF4081] border border-[#FF4081]/30 z-10';
-                badge.textContent = labelText;
-
-                const imgContainer = document.createElement('div');
-                imgContainer.className = 'w-full min-h-[200px] sm:min-h-[300px] flex items-center justify-center';
+                // Remove the large padding and distinct borders to make it look like a cohesive comic page
+                wrapper.className = 'group relative rounded-lg overflow-hidden bg-black/50 aspect-[3/4] flex items-center justify-center';
 
                 const img = document.createElement('img');
                 img.src = src;
                 img.alt = labelText;
-                img.className = 'w-full h-auto object-contain';
+                // Use object-cover to ensure images fill their grid slot perfectly uniformly 
+                img.className = 'w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]';
 
                 const downloadBtn = document.createElement('a');
                 downloadBtn.href = src;
                 downloadBtn.download = isObjectUrl ? 'manga-panel.png' : 'manga-page.png'; // Note: Blob downloads work better with original extension
-                downloadBtn.className = 'flex-1 sm:flex-none text-center px-4 sm:px-6 py-2 bg-black/70 backdrop-blur-md text-white rounded-xl border border-white/20 hover:bg-waifu-pink/30 hover:bg-[#FF4081]/50 transition-colors font-bold text-sm sm:text-base backdrop-filter';
+                // Hide actions by default, show on hover or active on mobile
+                downloadBtn.className = 'flex-1 sm:flex-none text-center px-4 py-2 bg-black/80 backdrop-blur-md text-white rounded-xl border border-white/20 hover:bg-waifu-pink/30 hover:bg-[#FF4081]/50 transition-colors font-bold text-xs sm:text-sm backdrop-filter';
                 downloadBtn.textContent = 'Download';
 
                 // Add Share on X button
@@ -371,17 +380,20 @@
                 shareBtn.href = `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
                 shareBtn.target = '_blank';
                 shareBtn.rel = 'noopener noreferrer';
-                shareBtn.className = 'flex-1 sm:flex-none justify-center px-4 sm:px-6 py-2 bg-[#1DA1F2]/80 backdrop-blur-md text-white rounded-xl border border-white/20 hover:bg-[#1DA1F2] transition-colors font-bold text-sm sm:text-base flex items-center gap-2 backdrop-filter';
-                shareBtn.innerHTML = `<svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.008 5.964H5.078z"></path></svg> <span class="hidden sm:inline">Share</span>`;
+                shareBtn.className = 'flex-1 sm:flex-none justify-center px-4 py-2 bg-[#1DA1F2]/90 backdrop-blur-md text-white rounded-xl border border-white/20 hover:bg-[#1DA1F2] transition-colors font-bold text-xs sm:text-sm flex items-center gap-1 backdrop-filter';
+                shareBtn.innerHTML = `<svg class="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.008 5.964H5.078z"></path></svg> <span class="hidden sm:inline">Share</span>`;
 
                 const actionContainer = document.createElement('div');
-                actionContainer.className = 'absolute bottom-2 left-2 right-2 sm:bottom-4 sm:left-auto sm:right-4 flex flex-row gap-2 z-10 w-[calc(100%-16px)] sm:w-auto overflow-hidden';
+                // Make the actions float elegantly at the bottom and fade in
+                actionContainer.className = 'absolute bottom-2 left-2 right-2 flex flex-row gap-2 z-10 w-[calc(100%-16px)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none';
                 actionContainer.appendChild(shareBtn);
                 actionContainer.appendChild(downloadBtn);
 
-                imgContainer.appendChild(img);
-                wrapper.appendChild(badge);
-                wrapper.appendChild(imgContainer);
+                // Allow clicking actions when they appear
+                shareBtn.style.pointerEvents = 'auto';
+                downloadBtn.style.pointerEvents = 'auto';
+
+                wrapper.appendChild(img);
                 wrapper.appendChild(actionContainer);
 
                 imagesWrapper.appendChild(wrapper);
