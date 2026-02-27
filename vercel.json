@@ -1,27 +1,6 @@
 {
   "version": 2,
-  "framework": null,
-  "installCommand": "pnpm install",
-  "builds": [
-    {
-      "src": "backend/api/index.ts",
-      "use": "@vercel/node"
-    }
-  ],
-  "rewrites": [
-    { "source": "/skills.md", "destination": "/backend/api/index.ts" },
-    { "source": "/api/(.*)", "destination": "/backend/api/index.ts" },
-    { "source": "/health", "destination": "/backend/api/index.ts" },
-    { "source": "/(.*)", "destination": "/backend/api/index.ts" }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, DELETE, OPTIONS" },
-        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization" }
-      ]
-    }
-  ]
+  "buildCommand": "bun run build",
+  "installCommand": "bun install",
+  "outputDirectory": "frontend/out"
 }

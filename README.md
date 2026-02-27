@@ -35,31 +35,31 @@ panelforge/
 ### Prerequisites
 
 - Node.js 20+
-- pnpm 8+
+- bun 1.0+
 - MetaMask or compatible Web3 wallet
 
 ### Installation
 
 ```bash
 # Install dependencies
-pnpm install
+bun install
 
 # Set up environment variables
 cp .env.example .env.local
 # Fill in: NEXT_PUBLIC_TOKEN_ADDRESS, ANTHROPIC_API_KEY, etc.
 
 # Run dev servers
-pnpm dev
+bun run dev
 ```
 
-Frontend: http://localhost:3000
-Backend: http://localhost:4000
+Frontend: <http://localhost:3000>
+Backend: <http://localhost:4000>
 
 ### Build & Deploy
 
 ```bash
 # Build all packages
-pnpm build
+bun run build
 
 # Deploy frontend to Vercel
 cd frontend && vercel deploy --prod
@@ -71,6 +71,7 @@ cd backend && vercel deploy --prod
 ## Environment Variables
 
 ### Frontend (.env.local)
+
 ```
 NEXT_PUBLIC_API_URL=http://localhost:4000
 NEXT_PUBLIC_TOKEN_ADDRESS=0x...
@@ -79,6 +80,7 @@ NEXT_PUBLIC_CHAIN_ID=8453
 ```
 
 ### Backend (.env)
+
 ```
 PORT=4000
 ANTHROPIC_API_KEY=sk-ant-...

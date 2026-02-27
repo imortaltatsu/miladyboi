@@ -125,28 +125,29 @@ async function x402Middleware(req, res, next) {
 
 ```bash
 # Install
-pnpm install
+bun install
 
 # Dev (runs both frontend & backend)
-pnpm dev
+bun run dev
 
 # Dev individual
-pnpm --filter frontend dev      # http://localhost:3000
-pnpm --filter backend dev       # http://localhost:4000
+bun --filter frontend dev      # http://localhost:3000
+bun --filter backend dev       # http://localhost:4000
 
 # Build
-pnpm build
+bun run build
 
 # Type check
-pnpm typecheck
+bun typecheck
 
 # Lint
-pnpm lint
+bun lint
 ```
 
 ## Environment Setup
 
 ### Frontend (.env.local)
+
 ```
 NEXT_PUBLIC_API_URL=http://localhost:4000
 NEXT_PUBLIC_WS_URL=ws://localhost:4000
@@ -157,6 +158,7 @@ NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=...
 ```
 
 ### Backend (.env)
+
 ```
 PORT=4000
 NODE_ENV=development
@@ -170,6 +172,7 @@ RPC_URL=https://mainnet.base.org
 ## Design System
 
 ### Brand Colors (Waifu Theme)
+
 ```js
 waifu: {
   red: '#FF1744',        // Primary CTA
@@ -182,16 +185,19 @@ waifu: {
 ```
 
 ### Gradients
+
 - **Waifu Gradient**: `linear-gradient(135deg, #FF4081 0%, #FF6E88 50%, #B968C7 100%)`
 - **Hero BG**: Animated pink/coral gradient with opacity
 - **Buttons**: `from-waifu-red to-waifu-pink`
 
 ### Typography
+
 - **Display**: Black weight, large sizes (text-6xl to text-9xl)
 - **Body**: Inter
 - **Copy**: Fun, degen-friendly. Use casual language, emojis strategically
 
 ### Components
+
 - **Glassmorphic Cards**: `backdrop-blur-xl bg-white/5 border border-white/10` (`.glass`)
 - **Waifu Gradient Text**: `.waifu-gradient` class
 - **Shadow Effects**: `shadow-waifu` for pink glow
@@ -210,6 +216,7 @@ waifu: {
 ## Updating This File
 
 Only update for fundamental changes:
+
 - New core features
 - Architecture shifts
 - Critical patterns/gotchas

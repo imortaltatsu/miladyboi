@@ -12,7 +12,7 @@ export default function GalleryPage() {
       <header className="relative z-10 border-b border-white/10 backdrop-blur-md bg-black/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-            <h1 className="text-2xl sm:text-3xl font-black waifu-gradient tracking-tight">Milady Waifu</h1>
+            <h1 className="text-2xl sm:text-3xl font-black waifu-gradient tracking-tight">Milady Manga</h1>
           </Link>
           <div className="flex items-center gap-4">
             <Link href="/app" className="px-6 py-2 bg-gradient-to-r from-waifu-red to-waifu-pink text-white font-bold rounded-xl hover:scale-105 transition-all shadow-waifu text-sm">

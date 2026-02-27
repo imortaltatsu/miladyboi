@@ -8,7 +8,7 @@ export default function LandingPage() {
       <header className="relative border-b border-white/10 backdrop-blur-md bg-black/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <h1 className="text-2xl sm:text-3xl font-black waifu-gradient tracking-tight">Milady Waifu</h1>
+            <h1 className="text-2xl sm:text-3xl font-black waifu-gradient tracking-tight">Milady Manga</h1>
           </div>
           <Link
             href="/app"
@@ -97,8 +97,8 @@ export default function LandingPage() {
             <div className="grid sm:grid-cols-3 gap-8 mb-16">
               <StepCard
                 number="1"
-                title="Connect Wallet"
-                description="Connect any EVM-compatible wallet. MetaMask, Rainbow, or WalletConnect."
+                title="Launch App"
+                description="Enter the generator interface to start creating."
               />
               <StepCard
                 number="2"
@@ -112,10 +112,10 @@ export default function LandingPage() {
               />
             </div>
 
-            {/* Why Milady Waifu */}
+            {/* Why Milady Manga */}
             <div className="max-w-6xl mx-auto">
               <h3 className="text-3xl sm:text-5xl font-black text-center mb-16">
-                Why <span className="waifu-gradient">Milady Waifu</span>?
+                Why <span className="waifu-gradient">Milady Manga</span>?
               </h3>
               <div className="grid md:grid-cols-3 gap-8">
                 <FeatureCard
@@ -123,8 +123,8 @@ export default function LandingPage() {
                   description="State-of-the-art AI crafts your panels with precision and style. Every panel is uniquely crafted."
                 />
                 <FeatureCard
-                  title="Full Web3"
-                  description="Pay with tokens on Base. On-chain verification. Your wallet, your creations. Fully decentralized."
+                  title="No Wallet Needed"
+                  description="Start generating immediately. Free access during development phase."
                 />
                 <FeatureCard
                   title="Instant Results"
@@ -165,7 +165,7 @@ export default function LandingPage() {
       <footer className="relative border-t border-white/10 mt-12 backdrop-blur-sm bg-black/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="text-xl font-black waifu-gradient">Milady Waifu</span>
+            <span className="text-xl font-black waifu-gradient">Milady Manga</span>
           </div>
           <p className="text-gray-200 mb-6">
             Built for creators.
