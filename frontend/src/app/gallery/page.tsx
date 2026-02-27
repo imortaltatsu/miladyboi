@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function GalleryPage() {
   return (
-    <div className="min-h-screen bg-waifu-bg relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 hero-gradient-bg opacity-20" />
 

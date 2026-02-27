@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-waifu-bg overflow-hidden relative">
+    <div className="min-h-screen overflow-hidden relative">
 
       {/* Header */}
       <header className="relative border-b border-white/10 backdrop-blur-md bg-black/20">
