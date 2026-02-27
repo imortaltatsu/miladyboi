@@ -1,23 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { getGallery } from '@/lib/api'
 import Link from 'next/link'
 
 export default function GalleryPage() {
-  const [gallery, setGallery] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    getGallery().then(res => {
-      setGallery(res.data.generations)
-      setLoading(false)
-    }).catch(err => {
-      console.error(err)
-      setLoading(false)
-    })
-  }, [])
-
   return (
     <div className="min-h-screen bg-waifu-bg relative overflow-hidden">
       {/* Background gradient */}
@@ -39,41 +24,26 @@ export default function GalleryPage() {
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-12">
-        <div className="flex justify-between items-center mb-10">
-          <div>
-            <h2 className="text-4xl font-black">
-              <span className="waifu-gradient">Public Gallery</span>
-            </h2>
-            <p className="text-gray-200 mt-2">Community-generated panels</p>
-          </div>
-          <Link href="/" className="glass px-6 py-2 rounded-xl hover:bg-white/10 transition-colors text-gray-100">
-            &larr; Back
-          </Link>
+        <div className="mb-10">
+          <h2 className="text-4xl font-black">
+            <span className="waifu-gradient">Gallery</span>
+          </h2>
+          <p className="text-gray-200 mt-2">Community-generated manga panels</p>
         </div>
 
-        {loading ? (
-          <div className="flex items-center justify-center py-20">
-            <span className="w-8 h-8 border-2 border-waifu-pink/30 border-t-waifu-pink rounded-full animate-spin" />
+        <div className="glass rounded-3xl p-12 text-center backdrop-blur-lg bg-black/30">
+          <div className="w-16 h-16 bg-gradient-to-br from-waifu-red to-waifu-pink rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <div className="w-8 h-8 bg-white/90 rounded-sm" />
           </div>
-        ) : gallery.length === 0 ? (
-          <div className="glass rounded-3xl p-12 text-center backdrop-blur-lg bg-black/30">
-            <p className="text-gray-200 text-lg mb-4">No panels generated yet.</p>
-            <Link href="/app" className="text-waifu-pink font-bold hover:underline">
-              Be the first to create one
-            </Link>
-          </div>
-        ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {gallery.map((item) => (
-              <div key={item.id} className="glass rounded-2xl p-6 hover:border-waifu-pink/30 transition-all backdrop-blur-lg bg-black/30">
-                <div className="bg-black/40 p-4 rounded-xl border border-waifu-purple/30 mb-4">
-                  <p className="text-sm leading-relaxed text-gray-100">{item.panelText}</p>
-                </div>
-                <p className="text-xs text-gray-300">By {item.userAddress.slice(0, 6)}...{item.userAddress.slice(-4)}</p>
-              </div>
-            ))}
-          </div>
-        )}
+          <p className="text-gray-100 text-xl font-bold mb-2">Coming Soon</p>
+          <p className="text-gray-300 mb-6">Gallery will display community-generated panels. Start creating now.</p>
+          <Link
+            href="/app"
+            className="inline-block px-8 py-3 bg-gradient-to-r from-waifu-red to-waifu-pink text-white font-black rounded-xl hover:scale-105 transition-all shadow-waifu"
+          >
+            Generate Your First Panel
+          </Link>
+        </div>
       </div>
     </div>
   )

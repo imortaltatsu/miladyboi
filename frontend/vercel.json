@@ -1,7 +1,7 @@
 {
   "framework": "nextjs",
+  "installCommand": "npm install --legacy-peer-deps",
   "env": {
-    "NEXT_PUBLIC_API_URL": "https://backend-delta-henna-20.vercel.app",
-    "NEXT_PUBLIC_WS_URL": "wss://backend-delta-henna-20.vercel.app"
+    "NEXT_PUBLIC_API_URL": "https://mangaapi.miladyboi.fun"
   }
 }
