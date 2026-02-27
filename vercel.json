@@ -2,5 +2,7 @@
   "version": 2,
   "buildCommand": "bun run build",
   "installCommand": "bun install",
-  "outputDirectory": "frontend/out"
+  "outputDirectory": "frontend/out",
+  "cleanUrls": true,
+  "trailingSlash": false
 }
